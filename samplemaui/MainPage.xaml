@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="samplemaui.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:local="clr-namespace:samplemaui.Helpers"
+    Title="MainPage"
+    ios:Page.LargeTitleDisplay="Always">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center">
+            <Switch IsToggled="{Binding IsShakeEnabled}" />
+            <Label
+                x:Name="orientationLabel"
+                FontSize="32"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1" />
+            <Image
+                x:Name="img"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="dotnet_bot.png" />
+
+            <Label
+                FontSize="32"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="Hello, World!" />
+
+            <Label
+                FontSize="18"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                SemanticProperties.HeadingLevel="Level2"
+                Text="Welcome to .NET Multi-platform App UI" />
+
+            <Frame
+                Grid.Row="4"
+                Padding="10,5"
+                BorderColor="LightGray"
+                HeightRequest="50">
+                <local:BorderlessEntry Placeholder="Enter Name" />
+            </Frame>
+
+            <Button
+                x:Name="CounterBtn"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Text="Click me" />
+
+            <Button
+                x:Name="BtnFileSaver"
+                Clicked="BtnFileSaver_Clicked"
+                HorizontalOptions="Center"
+                Text="File Saver" />
+
+            <Button
+                x:Name="BtnExistingDB"
+                Clicked="BtnExistingDB_Clicked"
+                HorizontalOptions="Center"
+                Text="Existing DB" />
+
+            <Image
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="dotnet_bot.png" />
+            <Label
+                FontSize="32"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="Hello, World!" />
+
+            <Button
+                x:Name="BtnVideo"
+                Margin="0,0,0,20"
+                Clicked="BtnNavVideoPage"
+                HorizontalOptions="Center"
+                Text="Navigate to Video" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

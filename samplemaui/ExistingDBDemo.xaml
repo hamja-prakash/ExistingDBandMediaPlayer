@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="samplemaui.ExistingDBDemo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:samplemaui.Helpers"
+    Title="ExistingDBDemo">
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <Grid
+            x:Name="grdEmployees"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame
+                Padding="10"
+                CornerRadius="0"
+                HeightRequest="50">
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="Existing SQLite DB Sample"
+                    TextColor="Black" />
+            </Frame>
+
+            <CollectionView
+                x:Name="clvEmployees"
+                Grid.Row="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="10"
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                Margin="10,0"
+                                Padding="5"
+                                HorizontalOptions="FillAndExpand"
+                                RowSpacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid
+                                    Grid.Row="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        Orientation="Horizontal"
+                                        Spacing="5"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="{OnPlatform Android=14,
+                                                                  iOS=18}"
+                                            Text="EmployeeId : "
+                                            TextColor="LightSalmon" />
+                                        <Label FontSize="{OnPlatform Android=14, iOS=18}" Text="{Binding EmployeeId}" />
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        Margin="0"
+                                        HorizontalOptions="EndAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalOptions="StartAndExpand">
+                                        <ImageButton
+                                            BackgroundColor="Transparent"
+                                            Clicked="BtnEdit_Tapped"
+                                            HeightRequest="{OnPlatform Android=25,
+                                                                       iOS=10}"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="iconedit.png"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="{OnPlatform Android=25,
+                                                                      iOS=10}" />
+                                        <ImageButton
+                                            Aspect="AspectFit"
+                                            BackgroundColor="Transparent"
+                                            Clicked="BtnDelete_Tapped"
+                                            HeightRequest="{OnPlatform Android=25,
+                                                                       iOS=10}"
+                                            Source="iconremove.png"
+                                            WidthRequest="{OnPlatform Android=25,
+                                                                      iOS=10}" />
+                                    </StackLayout>
+                                </Grid>
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    Spacing="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="{OnPlatform Android=14,
+                                                              iOS=18}"
+                                        Text="FirstName : "
+                                        TextColor="LightSalmon" />
+                                    <Label FontSize="{OnPlatform Android=14, iOS=18}" Text="{Binding FirstName}" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Row="2"
+                                    Margin="0,5,0,0"
+                                    Orientation="Horizontal"
+                                    Spacing="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="{OnPlatform Android=14,
+                                                              iOS=18}"
+                                        Text="LastName : "
+                                        TextColor="LightSalmon" />
+                                    <Label FontSize="{OnPlatform Android=14, iOS=18}" Text="{Binding LastName}" />
+                                </StackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <ImageButton
+                Grid.Row="2"
+                Margin="0,0,20,20"
+                BackgroundColor="Transparent"
+                Clicked="btnAddEmployee_Click"
+                HeightRequest="50"
+                HorizontalOptions="EndAndExpand"
+                Source="iconplus.png"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="50" />
+        </Grid>
+
+        <Grid
+            x:Name="grdAddEmployee"
+            Margin="20"
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="false"
+            VerticalOptions="FillAndExpand">
+            <Grid
+                Margin="0,10"
+                Padding="0"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="20"
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Frame
+                    Margin="0"
+                    Padding="5"
+                    BorderColor="Gray"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid
+                        Margin="0"
+                        Padding="0"
+                        ColumnSpacing="10"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Margin="0"
+                            HeightRequest="25"
+                            HorizontalOptions="FillAndExpand"
+                            Source="iconuser.png"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="25" />
+
+                        <Grid
+                            Grid.Column="1"
+                            Margin="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <BoxView
+                                Margin="0,5"
+                                BackgroundColor="Black"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="1" />
+                            <local:BorderlessEntry
+                                x:Name="txtFirstName"
+                                Margin="10,0"
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="First Name"
+                                PlaceholderColor="Gray"
+                                VerticalOptions="FillAndExpand" />
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <Frame
+                    Grid.Row="1"
+                    Margin="0"
+                    Padding="5"
+                    BorderColor="Gray"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid
+                        Margin="0"
+                        Padding="0"
+                        ColumnSpacing="10"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Margin="0"
+                            HeightRequest="25"
+                            HorizontalOptions="FillAndExpand"
+                            Source="iconuser.png"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="25" />
+
+                        <Grid
+                            Grid.Column="1"
+                            Margin="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <BoxView
+                                Margin="0,5"
+                                BackgroundColor="Black"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="1" />
+                            <local:BorderlessEntry
+                                x:Name="txtLastName"
+                                Margin="10,0"
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Last Name"
+                                PlaceholderColor="Gray"
+                                VerticalOptions="FillAndExpand" />
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <Frame
+                    x:Name="frmSave"
+                    Grid.Row="5"
+                    Margin="0,20,0,0"
+                    Padding="0"
+                    BorderColor="Gray"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="45"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Label
+                        BackgroundColor="#0A7EF1"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Save"
+                        TextColor="White"
+                        VerticalTextAlignment="Center" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmSave_Tapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="samplemaui.MediaElementPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="MediaElementPage">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand">
+        <toolkit:MediaElement
+            x:Name="mediaelement"
+            Aspect="AspectFill"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            ShouldAutoPlay="True"
+            Source="embed://BigBuckBunny.mp4"
+            VerticalOptions="Center"
+            WidthRequest="400" />
+        <!--  https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4  -->
+
+        <Button
+            x:Name="btnPlay"
+            Margin="0,20"
+            Clicked="btnPlay_Clicked"
+            HorizontalOptions="CenterAndExpand"
+            Text="Play"
+            WidthRequest="100" />
+
+        <Button
+            x:Name="btnStop"
+            Margin="0,20"
+            Clicked="btnStop_Clicked"
+            HorizontalOptions="CenterAndExpand"
+            Text="Stop"
+            WidthRequest="100" />
+    </VerticalStackLayout>
+</ContentPage>
